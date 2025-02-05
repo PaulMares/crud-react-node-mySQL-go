@@ -10,7 +10,7 @@ services:
       - "5173:5173"
   backend:
     ports:
-      - "3100:8800"
+      - "8800:8800"
     build:
       context: ./backend
     depends_on:
@@ -21,7 +21,6 @@ services:
     command: --init-file /db/books.sql
     environment:
       - MYSQL_ROOT_PASSWORD=test
-      - MYSQL_DATABASE="books"
     ports:
       - "3306:3306"
     healthcheck:
