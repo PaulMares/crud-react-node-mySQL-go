@@ -7,12 +7,15 @@ services:
         condition: service_healthy
         restart: true
     ports:
-      - "3000:5173"
+      - "5173:5173"
   backend:
     ports:
       - "3100:8800"
     build:
       context: ./backend
+    depends_on:
+      database:
+        condition: service_healthy
   database:
     build: .
     command: --init-file /db/books.sql
