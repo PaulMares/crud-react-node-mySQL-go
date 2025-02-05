@@ -1,0 +1,29 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+    depends_on:
+      database:
+        condition: service_healthy
+        restart: true
+    ports:
+      - "3000:5173"
+  backend:
+    ports:
+      - "3100:8800"
+    build:
+      context: ./backend
+  database:
+    build: .
+    command: --init-file /db/books.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=test
+      - MYSQL_DATABASE="books"
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "--password=test", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
