@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-//rafce
+
 const Add = () => {
 
     const [book, setBook] = useState({
@@ -21,7 +21,7 @@ const Add = () => {
     e.preventDefault()
     try{
         console.log("Posting:", book)
-        await axios.post(`http://localhost:${process.env.BACKEND_PORT}/books`, book)
+        await axios.post(`http://localhost:${import.meta.env.VITE_BACKEND_PORT}/books`, book)
         navigate("/")
     }catch(err){
         console.log(err)

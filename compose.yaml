@@ -4,6 +4,7 @@ services:
   frontend:
     build:
       context: ./frontend
+    env_file: .env
     depends_on:
       database:
         condition: service_healthy
@@ -12,6 +13,7 @@ services:
   backend:
     ports:
       - "8800:8800"
+    env_file: .env
     build:
       context: ./backend
     depends_on:
@@ -20,8 +22,7 @@ services:
   database:
     build: .
     command: --init-file /db/books.sql
-    environment:
-      - MYSQL_ROOT_PASSWORD=test
+    env_file: .env
     ports:
       - "3306:3306"
     healthcheck:
