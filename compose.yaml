@@ -1,3 +1,5 @@
+name: midterm
+
 services:
   frontend:
     build:
@@ -5,7 +7,6 @@ services:
     depends_on:
       database:
         condition: service_healthy
-        restart: true
     ports:
       - "5173:5173"
   backend:
@@ -25,7 +26,7 @@ services:
       - "3306:3306"
     healthcheck:
       test: ["CMD", "mysqladmin", "--password=test", "status"]
-      interval: 10s
+      interval: 5s
       timeout: 5s
-      retries: 5
-      start_period: 10s
+      retries: 2
+      start_period: 5s
