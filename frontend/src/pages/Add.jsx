@@ -21,7 +21,7 @@ const Add = () => {
     e.preventDefault()
     try{
         console.log("Posting:", book)
-        await axios.post("http://localhost:8800/books", book)
+        await axios.post(`http://localhost:${process.env.BACKEND_PORT}/books`, book)
         navigate("/")
     }catch(err){
         console.log(err)
