@@ -14,7 +14,7 @@ const db = mysql.createConnection({
 app.use(express.json())//return json data using the api server postman
 
 app.use(cors({
-    origin: [`http://localhost:${process.env.FRONTEND_PORT}`],
+    origin: [`http://localhost`],
     methods: ["GET", "POST", "PUT", "DELETE"]
 }))
 
