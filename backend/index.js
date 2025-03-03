@@ -11,12 +11,12 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME,
 })
 
-app.use(express.json())//return json data using the api server postman
-
 app.use(cors({
-    origin: [`https://paultech.software`],
+    origin: ['https://paultech.software'],
     methods: ["GET", "POST", "PUT", "DELETE"]
 }))
+
+app.use(express.json())//return json data using the api server postman
 
 app.get("/", (req,res)=>{
     res.json("Hello World from the backend!!!")

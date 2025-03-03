@@ -7,6 +7,7 @@ export default defineConfig({
   server: {
 	host: '0.0.0.0',
     port: 443,
+    cors: true,
     https: {
         key: process.env.SSL_KEY,
         cert: process.env.SSL_CERT,
