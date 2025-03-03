@@ -11,12 +11,14 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME,
 })
 
-app.options("/books", function(req, res, next) {
+app.use(function(req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader('Access-Control-Allow-Methods', '*');
     res.setHeader("Access-Control-Allow-Headers", "*");
     next()
 })
+
+app.use(express.json())
 
 app.get("/", (req,res)=>{
     res.json("Hello World from the backend!!!")
