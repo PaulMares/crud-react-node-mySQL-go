@@ -11,10 +11,7 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME,
 })
 
-app.use(cors({
-    origin: ['https://paultech.software'],
-    methods: ["GET", "POST", "PUT", "DELETE"]
-}))
+app.use(cors())
 
 app.use(express.json())//return json data using the api server postman
 
