@@ -11,13 +11,11 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME,
 })
 
-app.use(cors())
-
-app.options("*", function(req, res, next) {
+app.options("/books", function(req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader('Access-Control-Allow-Methods', '*');
     res.setHeader("Access-Control-Allow-Headers", "*");
-    res.end();
+    next()
 })
 
 app.get("/", (req,res)=>{
