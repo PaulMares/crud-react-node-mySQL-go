@@ -1,6 +1,5 @@
 import express  from "express";
 import mysql from "mysql2"
-import cors from "cors";
 
 const app = express();
 
@@ -11,26 +10,19 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME,
 })
 
-// Define allowed origins
-const allowedOrigins = [
-    'https://paultech.software'
-];
+app.options("/*", function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    res.end();
+})
 
-// Configure CORS options
-const corsOptions = {
-    origin: function(origin, callback) {
-        console.log("Got request:",origin);
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true,
-};
-
-// Apply custom CORS middleware with configured options
-app.use(cors(corsOptions));
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    next();
+});
 
 app.use(express.json())
 
