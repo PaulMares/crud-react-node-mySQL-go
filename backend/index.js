@@ -15,6 +15,11 @@ app.use(cors())
 
 app.use(express.json())//return json data using the api server postman
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+})
+
 app.get("/", (req,res)=>{
     res.json("Hello World from the backend!!!")
 })
