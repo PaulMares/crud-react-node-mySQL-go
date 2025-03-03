@@ -19,6 +19,7 @@ const allowedOrigins = [
 // Configure CORS options
 const corsOptions = {
     origin: function(origin, callback) {
+        console.log("Got request:",origin);
         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
             callback(null, true);
         } else {
