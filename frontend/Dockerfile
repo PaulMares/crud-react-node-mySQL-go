@@ -10,6 +10,6 @@ COPY ./ ./
 # Install node packages, install serve, build the app, and remove dependencies at the end
 RUN npm install
 
-EXPOSE 5173
+EXPOSE 443
 
 CMD ["npm", "run", "dev"]
