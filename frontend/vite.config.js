@@ -10,6 +10,7 @@ export default defineConfig({
     https: {
         key: process.env.SSL_KEY,
         cert: process.env.SSL_CERT,
-    }
+    },
+    proxy: {}
   }
 })
