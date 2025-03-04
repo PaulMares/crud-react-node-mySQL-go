@@ -21,7 +21,7 @@ const Add = () => {
     e.preventDefault()
     try{
         console.log("Posting:", book)
-        await axios.post(`http://localhost:${import.meta.env.VITE_BACKEND_PORT}/books`, book)
+        await axios.post(`https://paultech.software:${import.meta.env.VITE_BACKEND_PORT}/books`, book)
         navigate("/")
     }catch(err){
         console.log(err)
