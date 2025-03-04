@@ -1,5 +1,6 @@
 import express  from "express";
 import mysql from "mysql2"
+import https from "https";
 
 const app = express();
 
@@ -92,8 +93,13 @@ app.get("/books", (req,res)=>{
 })
 
 
-app.listen(8800, ()=>{
-    console.log("Connect to the backend!!!!")
+https
+    .createServer({
+        key: process.env.SSL_KEY,
+        cert: process.env.SSL_CERT,
+    }, app)
+    .listen(8800, () => {
+    console.log("Server is running on port 8800")
 })
 
 //npm start
