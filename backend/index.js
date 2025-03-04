@@ -1,7 +1,5 @@
 import express  from "express";
 import mysql from "mysql2"
-import cors from "cors";
-import https from "https";
 
 const app = express();
 
@@ -25,10 +23,6 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", "*");
     next();
 });
-
-app.use(cors({
-    origin: "https://paultech.software"
-}));
 
 app.use(express.json())
 
@@ -98,10 +92,8 @@ app.get("/books", (req,res)=>{
 })
 
 
-https
-    .createServer(app)
-    .listen(8800, ()=>{
-        console.log('server is runing at port 4000')
-    });
+app.listen(8800, ()=>{
+    console.log("Connect to the backend!!!!")
+})
 
 //npm start
