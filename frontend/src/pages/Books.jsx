@@ -9,7 +9,7 @@ const [books, setBooks] = useState([])
 useEffect(()=>{
 const fetchAllBooks = async ()=>{
     try {
-      const res = await axios.get(`http://localhost:${import.meta.env.VITE_BACKEND_PORT}/books`)
+      const res = await axios.get(`https://paultech.software:${import.meta.env.VITE_BACKEND_PORT}/books`)
       setBooks(res.data)
       console.log(res)
     }catch(err){
@@ -22,7 +22,7 @@ fetchAllBooks()
 
 const handleDelete = async (id)=>{
     try{
-    await axios.delete(`http://localhost:${import.meta.env.VITE_BACKEND_PORT}/books/`+id)
+    await axios.delete(`https://paultech.software:${import.meta.env.VITE_BACKEND_PORT}/books/`+id)
     window.location.reload()
     }catch(err){
         console.log(err)
