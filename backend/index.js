@@ -1,5 +1,6 @@
 import express  from "express";
 import mysql from "mysql2"
+import cors from "cors";
 
 const app = express();
 
@@ -23,6 +24,8 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", "*");
     next();
 });
+
+app.use(cors());
 
 app.use(express.json())
 
