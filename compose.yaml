@@ -1,4 +1,4 @@
-name: midterm
+name: final
 
 services:
   frontend:
@@ -9,24 +9,40 @@ services:
       database:
         condition: service_healthy
     ports:
-      - "443:443"
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+
   backend:
     ports:
-      - "8800:8800"
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
     env_file: .env
     build:
       context: ./backend
     depends_on:
       database:
         condition: service_healthy
+
+  api-1:
+    ports:
+      - "${API1_PORT}:${API1_PORT}"
+    env_file: .env
+    build:
+      context: ./api-1
+
+  api-2:
+    ports:
+      - "${API2_PORT}:${API2_PORT}"
+    env_file: .env
+    build:
+      context: ./api-2
+
   database:
     build: .
     command: --init-file /db/books.sql
     env_file: .env
     ports:
-      - "3306:3306"
+      - "${DB_PORT}:${DB_PORT}"
     healthcheck:
-      test: ["CMD-SHELL", "mysql -uroot -ptest -e 'use test;'"]
+      test: [ "CMD-SHELL", "mysql -uroot -ptest -e 'use test;'" ]
       interval: 5s
       timeout: 5s
       retries: 5

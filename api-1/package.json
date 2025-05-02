@@ -1,7 +1,9 @@
 {
-	"name": "backend",
+	"name": "api-1",
 	"version": "1.0.0",
 	"description": "",
+	"license": "ISC",
+	"author": "Paul Maresquier",
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
@@ -9,13 +11,9 @@
 		"nodemon": "nodemon index.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
 	"dependencies": {
 		"cors": "^2.8.5",
 		"express": "^4.18.2",
-		"mysql2": "^3.12.0",
 		"nodemon": "^3.0.1"
 	}
 }
