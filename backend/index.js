@@ -79,10 +79,7 @@ app.put("/books/:id", (req, res) => {
 
 
 http
-	.createServer({
-		key: process.env.SSL_KEY,
-		cert: process.env.SSL_CERT
-	}, app)
+	.createServer(app)
 	.listen(process.env.BACKEND_PORT || 8800, () => {
 		console.log(`Server is running on port ${process.env.BACKEND_PORT || 8800}`);
 	});
