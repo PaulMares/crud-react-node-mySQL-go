@@ -24,7 +24,7 @@ const Books = () => {
 
 	const fetchAllBooks = async () => {
 		try {
-			const res = await axios.get(`${import.meta.env.VITE_PROTO}://${import.meta.env.VITE_BACKEND_HOST}:${import.meta.env.VITE_BACKEND_PORT}/books`);
+			const res = await axios.get('/api/backend/books');
 			setBooks(res.data);
 			console.log(res);
 		} catch (err) {
@@ -34,7 +34,7 @@ const Books = () => {
 
 	const fetchDateString = async () => {
 		try {
-			const res = await axios.get(`${import.meta.env.VITE_PROTO}://${import.meta.env.VITE_API2_HOST}:${import.meta.env.VITE_API2_PORT}/time`);
+			const res = await axios.get('/api/api-2/time');
 			setDateString(res.data);
 			console.log(res);
 		} catch (err) {
@@ -44,7 +44,7 @@ const Books = () => {
 
 	const fetchTitle = async () => {
 		try {
-			const res = await axios.get(`${import.meta.env.VITE_PROTO}://${import.meta.env.VITE_API1_HOST}:${import.meta.env.VITE_API1_PORT}/title`);
+			const res = await axios.get('/api/api-1/title');
 			setTitle(res.data);
 			console.log(res);
 		} catch (err) {
@@ -54,7 +54,7 @@ const Books = () => {
 
 	const handleDelete = async (id) => {
 		try {
-			await axios.delete(`${import.meta.env.VITE_PROTO}://${import.meta.env.VITE_BACKEND_HOST}:${import.meta.env.VITE_BACKEND_PORT}/books/` + id);
+			await axios.delete('/api/backend/books/' + id);
 			setReloads((prev) => (prev + 1) % 10);
 		} catch (err) {
 			console.log(err);

@@ -27,7 +27,7 @@ const Update = () => {
    const handleClick = async e =>{
     e.preventDefault()
     try{
-        await axios.put(`${import.meta.env.VITE_PROTO}://${import.meta.env.VITE_BACKEND_HOST}:${import.meta.env.VITE_BACKEND_PORT}/books/`+ bookID, book)
+        await axios.put('/api/backend/books/' + bookID, book)
         navigate("/")
     }catch(err){
         console.log(err)
@@ -49,4 +49,3 @@ console.log(book)
 }
 
 export default Update
-
