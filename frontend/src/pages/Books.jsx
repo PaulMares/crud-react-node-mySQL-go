@@ -55,7 +55,7 @@ const Books = () => {
 	const handleDelete = async (id) => {
 		try {
 			await axios.delete(`${import.meta.env.VITE_PROTO}://${import.meta.env.VITE_BACKEND_HOST}:${import.meta.env.VITE_BACKEND_PORT}/books/` + id);
-			window.location.reload();
+			setReloads((prev) => (prev + 1) % 10);
 		} catch (err) {
 			console.log(err);
 		}

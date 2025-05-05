@@ -5,9 +5,6 @@ services:
     build:
       context: ./frontend
     env_file: .env
-    depends_on:
-      database:
-        condition: service_healthy
     ports:
       - "${FRONTEND_PORT}:${FRONTEND_PORT}"
 
@@ -17,9 +14,6 @@ services:
     env_file: .env
     build:
       context: ./backend
-    depends_on:
-      database:
-        condition: service_healthy
 
   api-1:
     ports:
@@ -34,16 +28,3 @@ services:
     env_file: .env
     build:
       context: ./api-2
-
-  database:
-    build: .
-    command: --init-file /db/books.sql
-    env_file: .env
-    ports:
-      - "${DB_PORT}:${DB_PORT}"
-    healthcheck:
-      test: [ "CMD-SHELL", "mysql -uroot -ptest -e 'use test;'" ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-      start_period: 10s

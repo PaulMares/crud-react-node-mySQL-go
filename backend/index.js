@@ -1,15 +1,9 @@
 import express from "express";
-import mysql from "mysql2";
 import http from "http";
 
 const app = express();
 
-const db = mysql.createConnection({
-	host: process.env.DB_HOST,
-	user: process.env.DB_USER,
-	password: process.env.DB_PASS,
-	database: process.env.DB_NAME
-});
+let db = []
 
 app.options("/*", function (req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
@@ -33,13 +27,8 @@ app.get("/", (req, res) => {
 
 //postman -> get method  http://localhost:8800/books
 app.get("/books", (req, res) => {
-	const query = "SELECT * FROM books";
-	db.query(query, (err, data) => {
-		if (err) {
-			return res.json(err);
-		}
-		return res.json(data);
-	});
+	console.log(db);
+	res.json(db);
 });
 
 
@@ -53,51 +42,39 @@ app.get("/books", (req, res) => {
 // }
 
 app.post("/books", (req, res) => {
-	const query = "INSERT INTO books (`title`, `description`, `price`, `cover`) VALUES (?)";
-	const values = [
-		req.body.title,
-		req.body.description,
-		req.body.price,
-		req.body.cover
-	];
+	const values = {
+		id: db.length,
+		title: req.body.title,
+		description: req.body.description,
+		price: req.body.price,
+		cover: req.body.cover
+	};
 
-	db.query(query, [values], (err, data) => {
-		if (err) {
-			return res.json(err);
-		}
-		return res.json("Book has been created successfully!!!");
-	});
+	db.push(values);
+	res.json("Book added successfully");
 });
 
 app.delete("/books/:id", (req, res) => {
-	const bookID = req.params.id;
-	const query = "DELETE FROM books WHERE id = ?";
+	const bookID = parseInt(req.params.id, 10);
 
-	db.query(query, [bookID], (err, data) => {
-		if (err) {
-			return res.json(err);
-		}
-		return res.json("Book has been deleted successfully!!!");
-	});
+	db = db.filter((book) => {
+		return book.id !== bookID;
+	})
+	res.json("Book deleted successfully");
 });
 
 app.put("/books/:id", (req, res) => {
-	const bookID = req.params.id;
-	const query = "UPDATE books SET `title`= ?, `description`= ?, `price`= ?, `cover`= ? WHERE id = ?";
+	const bookID = parseInt(req.params.id, 10);
 
-	const values = [
-		req.body.title,
-		req.body.description,
-		req.body.price,
-		req.body.cover
-	];
-
-	db.query(query, [...values, bookID], (err, data) => {
-		if (err) {
-			return res.json(err);
+	db.forEach((book) => {
+		if (book.id === bookID) {
+			book.title = req.body.title;
+			book.description = req.body.description;
+			book.price = req.body.price;
+			book.cover = req.body.cover;
 		}
-		return res.json("Book has been updated successfully!!!");
-	});
+	})
+	res.json("Book updated successfully");
 });
 
 

@@ -27,7 +27,7 @@ const Update = () => {
    const handleClick = async e =>{
     e.preventDefault()
     try{
-        await axios.put(`https://paultech.software:${import.meta.env.VITE_BACKEND_PORT}/books/`+ bookID, book)
+        await axios.put(`${import.meta.env.VITE_PROTO}://${import.meta.env.VITE_BACKEND_HOST}:${import.meta.env.VITE_BACKEND_PORT}/books/`+ bookID, book)
         navigate("/")
     }catch(err){
         console.log(err)
