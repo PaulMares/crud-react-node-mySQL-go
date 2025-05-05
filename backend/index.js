@@ -80,7 +80,7 @@ app.put("/books/:id", (req, res) => {
 
 http
 	.createServer(app)
-	.listen(process.env.BACKEND_PORT || 8800, () => {
+	.listen(parseInt(process.env.BACKEND_PORT || "8800", 10), () => {
 		console.log(`Server is running on port ${process.env.BACKEND_PORT || 8800}`);
 	});
 
