@@ -8,10 +8,9 @@ export default defineConfig({
 		host: "0.0.0.0",
 		port: 80,
 		cors: true,
-		// https: {
-		// 	key: process.env.SSL_KEY,
-		// 	cert: process.env.SSL_CERT
-		// },
-		proxy: {}
+		proxy: {},
+		allowedHosts: [
+			"ad2c8a8a162124b85a35e2f2a019e9a0-1081224088.us-east-1.elb.amazonaws.com"
+		]
 	}
 });
