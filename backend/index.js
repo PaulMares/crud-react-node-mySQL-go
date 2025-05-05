@@ -77,11 +77,15 @@ app.put("/books/:id", (req, res) => {
 	res.json("Book updated successfully");
 });
 
+let port = parseInt(process.env.BACKEND_PORT, 10)
+if (Number.isNaN(port)) {
+	port = 8800;
+}
 
 http
 	.createServer(app)
-	.listen(parseInt(process.env.BACKEND_PORT || "8800", 10), () => {
-		console.log(`Server is running on port ${process.env.BACKEND_PORT || 8800}`);
+	.listen(port, () => {
+		console.log(`Server is running on port ${port}`);
 	});
 
 //npm start
