@@ -10,6 +10,14 @@ COPY ./ ./
 # Install node packages, install serve, build the app, and remove dependencies at the end
 RUN npm install
 
-EXPOSE 443
+ENV VITE_PROTO=http \
+    VITE_BACKEND_HOST=backend.qa.svc.cluster.local \
+    VITE_BACKEND_PORT=8800 \
+    VITE_API1_HOST=api-1.qa.svc.cluster.local \
+    VITE_API1_PORT=8802 \
+    VITE_API2_HOST=api-2.qa.svc.cluster.local \
+    VITE_API2_PORT=8804
+
+EXPOSE 80
 
 CMD ["npm", "run", "dev"]
