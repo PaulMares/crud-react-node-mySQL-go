@@ -3,8 +3,8 @@ import {defineConfig, loadEnv} from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig(({mode}) => {
-	process.env = {...process.env, ...loadEnv(mode, process.cwd())};
-	const namespace = process.env.VITE_NAMESPACE || "qa"; // fallback if unset
+	const env = loadEnv(mode, process.cwd(), "VITE_");
+	const namespace = env.VITE_NAMESPACE || "qa"; // fallback if unset
 
 	return {
 		plugins: [react()],
