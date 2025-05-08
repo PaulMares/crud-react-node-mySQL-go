@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/title", (req, res) => {
-	res.json("Lama Book Shop 4: If This Works I'll Cry");
+	res.json("Lama Book Shop 5: Please dear god");
 });
 
 http
