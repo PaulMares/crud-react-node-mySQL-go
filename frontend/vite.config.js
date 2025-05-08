@@ -27,7 +27,7 @@ export default defineConfig({
 		},
 		allowedHosts: [
 			"ad2c8a8a162124b85a35e2f2a019e9a0-1081224088.us-east-1.elb.amazonaws.com",
-			"pauldoestech.dev",
+			"www.pauldoestech.dev",
 			"uat.pauldoestech.dev",
 			"qa.pauldoestech.dev",
 			"k8s-sharedfrontend-c96d91d6ec-991894069.us-east-1.elb.amazonaws.com"
